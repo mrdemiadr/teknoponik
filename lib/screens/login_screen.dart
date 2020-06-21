@@ -7,11 +7,14 @@ import 'forgotpassword_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String id = 'login_screen';
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  String userName;
+  String userPassowrd;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,6 +46,9 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 48.0,
             ),
             TextField(
+              onChanged: (value) {
+                userName = value;
+              },
               style: TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
               decoration: kTextFieldDecoration.copyWith(hintText: 'Username'),
@@ -51,6 +57,9 @@ class _LoginScreenState extends State<LoginScreen> {
               height: 20.0,
             ),
             TextField(
+              onChanged: (value) {
+                userPassowrd = value;
+              },
               style: TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
               decoration: kTextFieldDecoration.copyWith(hintText: 'Password'),
@@ -86,7 +95,10 @@ class _LoginScreenState extends State<LoginScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) {
-                    return HomeScreen();
+                    return HomeScreen(
+                      userName: userName,
+                      userPassword: userPassowrd,
+                    );
                   }),
                 );
               },
