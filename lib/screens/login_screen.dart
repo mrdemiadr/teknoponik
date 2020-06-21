@@ -13,8 +13,21 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  String userName;
-  String userPassowrd;
+  var userName = 'root';
+  var userPassowrd = 'root';
+  var userNameInput;
+  var userPassowrdInput;
+  InputDecoration userTextField = kTextFieldDecoration;
+  InputDecoration passwordTextField = kTextFieldDecoration;
+  InputDecoration noInputTextField = kTextFieldDecoration.copyWith(
+    enabledBorder: OutlineInputBorder(
+      borderSide: BorderSide(color: Colors.red, width: 3.0),
+      borderRadius: BorderRadius.all(Radius.circular(30.0)),
+    ),
+    focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: Colors.red, width: 3.0),
+        borderRadius: BorderRadius.all(Radius.circular(30.0))),
+  );
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,22 +60,23 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             TextField(
               onChanged: (value) {
-                userName = value;
+                userNameInput = value;
               },
               style: TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
-              decoration: kTextFieldDecoration.copyWith(hintText: 'Username'),
+              decoration: userTextField.copyWith(hintText: 'Username'),
             ),
             SizedBox(
               height: 20.0,
             ),
             TextField(
+              obscureText: true,
               onChanged: (value) {
-                userPassowrd = value;
+                userPassowrdInput = value;
               },
               style: TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
-              decoration: kTextFieldDecoration.copyWith(hintText: 'Password'),
+              decoration: passwordTextField.copyWith(hintText: 'Password'),
             ),
             SizedBox(
               height: 10.0,
@@ -92,15 +106,52 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
             FullWidthRoundButton(
               getPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
+                if (userNameInput != userName ||
+                    userPassowrdInput != userPassowrd) {
+                  showDialog(
+                    context: context,
+                    barrierDismissible: false, // user must tap button!
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: Text('Error'),
+                        content: SingleChildScrollView(
+                          child: ListBody(
+                            children: <Widget>[
+                              Text('Periksa Kembali Username dan Password'),
+                            ],
+                          ),
+                        ),
+                        actions: <Widget>[
+                          FlatButton(
+                            child: Text('OK'),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
+                  );
+                } else {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
                     return HomeScreen(
                       userName: userName,
                       userPassword: userPassowrd,
                     );
-                  }),
-                );
+                  }));
+                }
+//                if (userName.isNotEmpty == true &&
+//                    userPassowrd.isNotEmpty == true) {
+//                  Navigator.push(
+//                    context,
+//                    MaterialPageRoute(builder: (context) {
+//                      return HomeScreen(
+//                        userName: userName,
+//                        userPassword: userPassowrd,
+//                      );
+//                    }),
+//                  );
+//                }
               },
               textButton: 'Login',
             ),

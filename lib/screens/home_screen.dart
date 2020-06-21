@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_screen.dart';
 
 class HomeScreen extends StatelessWidget {
   final String userName;
@@ -7,10 +8,22 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(userName),
-      ),
       backgroundColor: Colors.white,
+      body: Center(
+        child: Center(
+          child: Container(
+            child: RaisedButton(
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => LoginScreen()));
+              },
+              child: Text('Log Out'),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

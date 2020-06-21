@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+const String kUserName = 'root';
+const String kPassword = 'root';
+
 const kTextFieldDecoration = InputDecoration(
   filled: true,
   fillColor: Color.fromRGBO(255, 255, 255, 0.3),
@@ -9,7 +12,7 @@ const kTextFieldDecoration = InputDecoration(
     color: Colors.white,
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.transparent, width: 0),
+    borderSide: BorderSide(color: Colors.transparent, width: 3.0),
     borderRadius: BorderRadius.all(Radius.circular(30.0)),
   ),
   focusedBorder: OutlineInputBorder(
