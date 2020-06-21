@@ -6,28 +6,19 @@ import 'home_screen.dart';
 import 'forgotpassword_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  static const String id = 'login_screen';
-
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  var userName = 'root';
-  var userPassowrd = 'root';
+  String userName = 'root';
+
+  String userPassowrd = 'root';
+
   var userNameInput;
+
   var userPassowrdInput;
-  InputDecoration userTextField = kTextFieldDecoration;
-  InputDecoration passwordTextField = kTextFieldDecoration;
-  InputDecoration noInputTextField = kTextFieldDecoration.copyWith(
-    enabledBorder: OutlineInputBorder(
-      borderSide: BorderSide(color: Colors.red, width: 3.0),
-      borderRadius: BorderRadius.all(Radius.circular(30.0)),
-    ),
-    focusedBorder: OutlineInputBorder(
-        borderSide: BorderSide(color: Colors.red, width: 3.0),
-        borderRadius: BorderRadius.all(Radius.circular(30.0))),
-  );
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               style: TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
-              decoration: userTextField.copyWith(hintText: 'Username'),
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Username'),
             ),
             SizedBox(
               height: 20.0,
@@ -76,7 +67,7 @@ class _LoginScreenState extends State<LoginScreen> {
               },
               style: TextStyle(color: Colors.white),
               textAlign: TextAlign.center,
-              decoration: passwordTextField.copyWith(hintText: 'Password'),
+              decoration: kTextFieldDecoration.copyWith(hintText: 'Password'),
             ),
             SizedBox(
               height: 10.0,

@@ -15,9 +15,11 @@ class HomeScreen extends StatelessWidget {
             child: RaisedButton(
               onPressed: () {
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => LoginScreen()));
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) => LoginScreen(),
+                  ),
+                );
               },
               child: Text('Log Out'),
             ),
