@@ -116,7 +116,14 @@ class _LoginScreenState extends State<LoginScreen> {
                           FlatButton(
                             child: Text('OK'),
                             onPressed: () {
-                              Navigator.of(context).pop();
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (BuildContext context) =>
+                                      LoginScreen(),
+                                  /** Pakai method push untuk rebuild ulang login_screen **/
+                                ),
+                              );
                             },
                           ),
                         ],
